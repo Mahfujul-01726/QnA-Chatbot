@@ -2,6 +2,10 @@
 
 This is a simple Streamlit application that provides a chat interface, likely powered by an OpenAI model.
 
+## 🔗 Live Demo
+
+[👉 Try the Chatbot on Streamlit](https://qnachatbotapplication.streamlit.app/)
+
 ## Features
 
 - Interactive chat interface.
@@ -25,8 +29,8 @@ Follow these steps to set up and run the application locally.
 1.  **Clone the repository (if applicable)**:
 
     ```bash
-    git clone <your-repository-url>
-    cd <your-repository-name>
+    git clone <https://github.com/Mahfujul-01726/QnA-Chatbot>
+    cd <QnA-Chatbot>
     ```
 
 2.  **Create a virtual environment (recommended)**:
