@@ -11,7 +11,8 @@ load_dotenv()
 # Initialize client with API key from environment or user input
 # The client will be re-initialized if the API key changes via user input
 initial_api_key = os.getenv("OPENAI_API_KEY")
-client = AsyncOpenAI(api_key=initial_api_key)
+
+client = AsyncOpenAI(api_key=initial_api_key or "")
 
 st.set_page_config(page_title="🤖 OpenAI Q&A Chatbot", layout="wide")
 
@@ -113,7 +114,7 @@ with st.sidebar:
     st.header("Settings")
     api_key_input = st.text_input("Enter your OpenAI API Key:", type="password", value=initial_api_key)
     if api_key_input:
-        openai.api_key = api_key_input
+
         client.api_key = api_key_input
     else:
         st.warning("Please enter your OpenAI API Key to use the chatbot.")
@@ -139,11 +140,11 @@ with main_placeholder.container():
 
     submit = st.button("Submit")
 
-    if submit and user_question and openai.api_key:
+    if submit and user_question and client.api_key:
         with st.spinner("Thinking..."):
             answer = asyncio.run(get_openai_response(user_question, model))
             # Save Q&A to conversation
             st.session_state.conversation.append({"question": user_question, "answer": answer})
         st.rerun() # Rerun to display new message
-    elif submit and not openai.api_key:
+    elif submit and not client.api_key:
         st.error("Please enter your OpenAI API Key in the sidebar to submit your question.")
